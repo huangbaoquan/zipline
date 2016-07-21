@@ -2182,11 +2182,6 @@ def order_stuff(context, data):
                 expected_cumulative[stat]
             )
 
-        self.assertEqual(
-            algo.capital_change_deltas,
-            {pd.Timestamp('2006-01-06', tz='UTC'): 50000.0}
-        )
-
     @parameterized.expand([
         ('interday_target', [('2006-01-04', 2388.0)]),
         ('interday_delta', [('2006-01-04', 1000.0)]),
@@ -2328,18 +2323,6 @@ def order_stuff(context, data):
             np.testing.assert_array_almost_equal(
                 np.array([perf[stat] for perf in cumulative_perf]),
                 expected_cumulative[stat]
-            )
-
-        if change_loc == 'interday':
-            self.assertEqual(
-                algo.capital_change_deltas,
-                {pd.Timestamp('2006-01-04', tz='UTC'): 1000.0}
-            )
-        else:
-            self.assertEqual(
-                algo.capital_change_deltas,
-                {pd.Timestamp('2006-01-04 17:00', tz='UTC'): 500.0,
-                 pd.Timestamp('2006-01-04 18:00', tz='UTC'): 500.0}
             )
 
     @parameterized.expand([
@@ -2558,18 +2541,6 @@ def order_stuff(context, data):
             np.testing.assert_array_almost_equal(
                 np.array([perf[stat] for perf in cumulative_perf]),
                 expected_cumulative[stat]
-            )
-
-        if change_loc == 'interday':
-            self.assertEqual(
-                algo.capital_change_deltas,
-                {pd.Timestamp('2006-01-04', tz='UTC'): 1000.0}
-            )
-        else:
-            self.assertEqual(
-                algo.capital_change_deltas,
-                {pd.Timestamp('2006-01-04 17:00', tz='UTC'): 500.0,
-                 pd.Timestamp('2006-01-04 18:00', tz='UTC'): 500.0}
             )
 
 
